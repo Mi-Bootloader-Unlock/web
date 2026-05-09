@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mi-orange: #ff6900;
+  --color-mi-orange-light: #ff8a3d;
+  --color-mi-dark: #0a0a0f;
+  --color-mi-dark-2: #14141c;
+  --color-mi-dark-3: #1c1c28;
+  --color-mi-gray: #8b8b9a;
+  --color-mi-purple: #7c3aed;
+  --color-mi-cyan: #06b6d4;
+
+  --font-display: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --animate-blob: blob 7s infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 3s ease-in-out infinite alternate;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-shine: shine 3s linear infinite;
+  --animate-fade-up: fadeUp 0.7s ease-out forwards;
+
+  @keyframes blob {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(30px,-50px) scale(1.1); }
+    66% { transform: translate(-20px,20px) scale(0.9); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes glow {
+    from { box-shadow: 0 0 20px rgba(255,105,0,0.4); }
+    to { box-shadow: 0 0 40px rgba(255,105,0,0.8); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes shine {
+    from { background-position: -200% center; }
+    to { background-position: 200% center; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+  body {
+    margin: 0;
+    background: #0a0a0f;
+    color: #fff;
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+    width: 100%;
+  }
+  #root, main { overflow-x: clip; }
+  ::selection { background: #ff6900; color: #fff; }
+}
+
+@layer utilities {
+  .text-gradient-orange {
+    background: linear-gradient(135deg, #ff6900 0%, #ff8a3d 50%, #ffb273 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-shine {
+    background: linear-gradient(90deg, #fff 0%, #ff8a3d 25%, #fff 50%, #ff8a3d 75%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
+  }
+  .glass {
+    background: rgba(28, 28, 40, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .glass-strong {
+    background: rgba(20, 20, 28, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,105,0,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,105,0,0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
